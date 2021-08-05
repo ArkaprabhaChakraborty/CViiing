@@ -8,7 +8,7 @@ int main(int argc, char** argv)
     if(argc!=1)
     {
         printf("usage ./WarpPerspective \n");
-        return -1;
+        return 1;
     }
     char* image_path = "/home/arkaprabha/CViiing/photos/cards.jpg";
     
