@@ -16,7 +16,8 @@ int main(int argc, char** argv )
         printf("No image data \n");
         return -1;
     }
-    namedWindow("Display Image", WINDOW_AUTOSIZE );
+    namedWindow("Display Image", WINDOW_AUTOSIZE ); //this is optional if you want to tinker with the window size
+     
     imshow("Display Image", image);
     waitKey(0);
     return 0;
