@@ -7,7 +7,7 @@ int main(int argc, char ** argv)
     if(argc !=2)
     {
         printf("usage: ./BasicImageProcessing <ImageFilePath> \n");
-        return -1;
+        return 1;
     }
 
     Mat image, gray, blur, canny;
