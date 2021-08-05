@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     if(!image.data)
     {
         printf("Image data couldn't be read \n");
-        return -1;
+        return 1;
     }
 
     //changing brightness
