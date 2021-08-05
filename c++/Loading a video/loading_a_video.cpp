@@ -8,7 +8,7 @@ int main( int argc, char** argv )
     if (argc != 2)
     {
         printf("usage: DisplayVideo.out <Image_Path>\n");
-        return -1;
+        return 1;
     }
     VideoCapture cap(argv[1]); // To use camera use VideoCapture cap(0);
     /*
