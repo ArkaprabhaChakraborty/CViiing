@@ -92,6 +92,16 @@ vector<Point> reorder(vector<Point> points)
 }
 
 
+Mat getWarped(Mat image, vector<Point> points, float w, float h)
+{
+    Mat image_out;
+    Point2f src[4] = { points[0],points[1],points[2], points[3] };
+    Point2f dst[4] = { {0.0f,0.0f},{w,0.0f},{0.0f,h},{w,h} };
+    Mat matrix = getPerspectiveTransform(src,dst);
+    warpPerspective(image,image_out,matrix,Point(w,h));
+    return image_out;
+}
+
 
 int main(int argc, char** argv)
 {
@@ -100,11 +110,11 @@ int main(int argc, char** argv)
         printf("usage: ./DocumentScanner <Full path to image> \n");
         return 1;
     }
-    Mat image, processedimage, image_copy, img;
+    Mat image, processedimage, image_copy, img, imgwarped;
     
     image = imread(argv[1]);
     img = imread(argv[1]);
-
+    float w = 420.0,h = 590.0;
     //image_copy = resize_image(image);
     processedimage = preprocessing(image);
 
@@ -115,10 +125,13 @@ int main(int argc, char** argv)
     printf("Number of Points found: %ld \n",initialPoints.size());
     drawPoints(docpoints,Scalar(0,0,255),img);
 
+    imgwarped = getWarped(image,docpoints,w,h);
+
     imshow("Original",image);
     imshow("Preprocessed",processedimage);
     imshow("Image Copy",img);
-   
+    imshow("Document",imgwarped);
+
     waitKey(0);
     return 0;
 }
